@@ -1,0 +1,102 @@
+<!doctype html><html lang="en"><head><title>Blot — Terms of Service</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--bg:#f2ede1;--ink:#17140f;--muted:#7a7263;--accent:#c2402a;--link:#2f6b4a;--card:#fbf8f0;--line:#d8d0bd}
+@media (prefers-color-scheme:dark){:root{--bg:#17140f;--ink:#f2ede1;--muted:#8a8271;--accent:#d96a52;--link:#6f9c82;--card:#211d15;--line:#3a3527}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:48px 20px 80px}
+header{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:32px}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.02em}
+h2{font-size:19px;margin:34px 0 10px;letter-spacing:-.01em}
+h3{font-size:16px;margin:22px 0 6px}
+.sub{color:var(--muted);font-size:14px;margin:0}
+a{color:var(--link)}
+ul{padding-left:20px}
+li{margin:6px 0}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:15px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:600}
+.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);padding:14px 16px;border-radius:0;margin:18px 0}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+code{background:var(--card);border:1px solid var(--line);padding:1px 5px;border-radius:0;font-size:14px}
+</style>
+</head><body><div class="wrap">
+<header>
+<h1>Blot — Terms of Service</h1>
+<p class="sub">Last updated: 26 August 2026 · Applies to the Blot iOS app and the Blot backend service.</p>
+</header>
+
+<h2>1. The agreement</h2>
+<p>These terms are between you and StarNova ("we", "us"), the operator of Blot. By downloading or using Blot you accept them. If you do not accept them, do not use the app.</p>
+
+<h2>2. What Blot is</h2>
+<p>You pick a screenshot. Blot sends it to our service, which reads the text in the image with optical character recognition, matches what it reads against patterns for email addresses, API keys and tokens, credit card numbers, phone numbers and IP addresses, and shows you what it found. You choose which findings to cover and how — a black bar, a blur, a pixel block, or decoy text that replaces the real string with a fake of the same shape — and Blot returns a cleaned PNG you can share or save.</p>
+<p>Blot is a convenience tool that helps you spot things you might otherwise miss. It is not a compliance product, a data-loss-prevention system, a certification, or an audit. Do not treat a screenshot that has been through Blot as certified safe, and do not use Blot as your only control where a leak would be serious — for production credentials, regulated personal data, legal disclosure or anything similar.</p>
+
+<h2>3. No guarantee of detection</h2>
+<div class="note"><strong>Read this one.</strong> Automated detection is imperfect. Blot can miss sensitive information in your screenshot, and it can cover the wrong thing. <strong>You are responsible for reviewing the cleaned image before you share it.</strong></div>
+<p>Detection depends on optical character recognition and on pattern matching, and both fail in ordinary, predictable ways. Text that is small, low-contrast, stylised, rotated, handwritten, rendered as part of an image, in an unusual script, or partly cut off may not be read at all. A secret that does not look like the patterns Blot knows — an unusual key format, an internal identifier, an account number, a home address, a face, a name, a location in a map screenshot — will not be flagged, because Blot is not looking for it. Conversely, harmless text can match a pattern and be covered when you did not want it covered.</p>
+<p>You also control what Blot looks for. Phone numbers and IP addresses are switched off by default, and any type you turn off in Controls will not be shown or covered. A finding you leave unticked in the review screen is not covered. Blot only ever covers what you confirm.</p>
+<p>Covering is applied to the image Blot returns, and only to that image. It does not alter, replace or protect the original screenshot in your photo library, any copy you already shared, or any other version of the image. If you share the original by mistake, Blot cannot help you.</p>
+<p>Accordingly, and to the fullest extent permitted by law, we make <strong>no warranty that Blot will find every piece of sensitive information in any image</strong>, that a cover cannot be reversed or inferred from context, or that a cleaned image is safe to publish. The decision to share is yours, and the consequences of sharing are yours.</p>
+
+<h2>4. No account</h2>
+<p>Blot has no sign-in. Your scan history and your plan live against an anonymous token stored on your device, as described in the <a href="./privacy.html">Privacy Policy</a>. If you delete the app, that token is gone: your history and your remaining allowance may not be recoverable, and we cannot restore history for an identity we cannot identify. Purchases are a separate matter and can be restored — see section 6.</p>
+
+<h2>5. Free, Plus and Pro</h2>
+<p>Blot is free to use with a monthly allowance, and two paid plans raise it. Scanning a new screenshot spends one scan; re-rendering the same scan with a different cover style is free and unlimited, and re-scanning an image you have already scanned is recognised and not charged again.</p>
+<table>
+<tr><th>Plan</th><th>Price</th><th>Scans per month</th><th>Also</th></tr>
+<tr><td>Free</td><td>—</td><td>15</td><td>One screenshot at a time; a "Cleaned with Blot" watermark on the result; the last 7 days of history shown</td></tr>
+<tr><td>Plus</td><td>$4.99/month or $29.99/year</td><td>100</td><td>No watermark; up to 10 screenshots per batch; full history</td></tr>
+<tr><td>Pro</td><td>$12.99/month or $79.99/year</td><td>1000</td><td>No watermark; up to 25 screenshots per batch; priority handling; full history</td></tr>
+</table>
+<p>Nothing in Blot is unlimited: every plan, Pro included, has a monthly ceiling, because each scan costs us a paid optical-character-recognition call and an uncapped plan is an uncapped bill. Once the monthly allowance is spent you can buy a <strong>consumable credit pack</strong> — a one-time purchase that adds scans to your balance. Credits are spent only after the monthly allowance is used up, do not expire at the end of the month, and are not refundable in cash or transferable between devices or App Store accounts. Prices shown here are the standard prices in US dollars; the price you actually pay is the one shown in the app for your App Store region and currency.</p>
+
+<h2>6. Purchases, renewal and cancellation</h2>
+<ul>
+<li>All purchases are processed by Apple through your App Store account and are managed there. Subscription state reaches us through RevenueCat; we never see or hold your card details.</li>
+<li>Prices are shown in the app in your local currency, and confirmed by Apple, before you buy.</li>
+<li>Subscriptions renew automatically at the end of each period unless auto-renew is turned off at least 24 hours before the period ends. Your account is charged for renewal within 24 hours of the end of the current period.</li>
+<li>Manage or cancel a subscription in iOS Settings → your name → Subscriptions. Cancelling stops the next renewal; the plan stays active until the end of the period you have paid for. <strong>Deleting the app does not cancel a subscription.</strong></li>
+<li>Credit packs are one-time consumable purchases. They do not renew and they are not a subscription.</li>
+<li>Purchases can be restored from within the app on the same App Store account.</li>
+<li>An unused portion of a free trial, where one is offered, is forfeited when you buy a subscription.</li>
+</ul>
+
+<h2>7. Refunds</h2>
+<p>Because Apple is the merchant of record for everything sold in the app, <strong>refunds are handled by Apple</strong> under the App Store terms of sale, not by us. Request one at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> or through iOS Settings → your name → Media &amp; Purchases. We cannot issue, reverse or guarantee a refund on Apple's behalf. Consumers in some countries have statutory withdrawal or refund rights; nothing here limits them.</p>
+
+<h2>8. Acceptable use</h2>
+<p>Please do not:</p>
+<ul>
+<li>upload images containing other people's personal data, credentials or private communications without a lawful basis for doing so;</li>
+<li>upload content that is illegal, that you have no right to process, or that depicts the sexual exploitation of children;</li>
+<li>use Blot to identify, harvest or extract sensitive information for any purpose other than covering it in your own screenshot;</li>
+<li>attempt to bypass the monthly allowance, mint identities in bulk, reverse engineer the app, scrape the service, or drive it through automated clients;</li>
+<li>overload the service or use it in a way that disrupts it for others.</li>
+</ul>
+<p>We enforce per-hour ceilings and per-device allowances, and we may limit, suspend or end access where the service is being abused.</p>
+
+<h2>9. Your content</h2>
+<p>Your screenshots remain yours. You grant us only the limited permission needed to transmit an image you submit, process it, have our providers process it, and return the cleaned result — as described in the <a href="./privacy.html">Privacy Policy</a>. We do not publish your images, do not use them for advertising, and do not use them to train machine-learning models. You are responsible for having the right to submit whatever you submit.</p>
+<p>Blot's name, app, interface and rendered elements such as the watermark remain ours. The cleaned image itself is yours to use however you like.</p>
+
+<h2>10. Availability and changes</h2>
+<p>Blot depends on third-party services and can be interrupted by their outages as well as ours. We may change, suspend or discontinue any part of Blot, including detection behaviour, allowances, plan contents and pricing for future purchases. Where a change would materially reduce what an active paid period gives you, it applies from the next renewal rather than mid-period. We may update these terms; material changes will be posted on this page with a new date, and continuing to use Blot after that means you accept them.</p>
+
+<h2>11. Disclaimer of warranties</h2>
+<p>Blot is provided "as is" and "as available", without warranties of any kind, express or implied, to the fullest extent permitted by law — including any implied warranty of merchantability, fitness for a particular purpose, accuracy, or non-infringement. Without limiting section 3, we do not warrant that detection is complete or correct, that covers cannot be defeated, that the service will be uninterrupted, timely, secure or error-free, or that any defect will be corrected. No advice or information you obtain from us creates a warranty not stated here.</p>
+
+<h2>12. Limitation of liability</h2>
+<p>To the maximum extent permitted by law, we are not liable for indirect, incidental, special, consequential, exemplary or punitive damages, nor for loss of profits, revenue, goodwill or data, nor for any loss, disclosure, compromise or misuse of information that Blot did not detect or did not cover — however caused and on any theory of liability. Our total aggregate liability arising out of or relating to Blot is limited to the greater of the amount you paid us for Blot in the twelve months before the claim, or ten US dollars. Some jurisdictions do not allow these exclusions; where that is so, they apply only to the extent permitted, and nothing in these terms limits liability for death or personal injury caused by negligence, for fraud, or for anything else that cannot lawfully be limited.</p>
+
+<h2>13. Termination</h2>
+<p>You may stop using Blot at any time by deleting the app, and you may ask us to delete your data as described in the <a href="./privacy.html">Privacy Policy</a>. We may suspend or terminate access if these terms are breached or the service is abused. Sections 3, 9, 11, 12 and this section survive termination.</p>
+
+<h2>14. Contact</h2>
+<p><a href="mailto:vdnhan97@gmail.com">vdnhan97@gmail.com</a></p>
+
+<footer>Blot · <a href="./privacy.html">Privacy Policy</a> · Operated by StarNova</footer>
+</div></body></html>

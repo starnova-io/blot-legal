@@ -1,0 +1,126 @@
+<!doctype html><html lang="en"><head><title>Blot — Privacy Policy</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--bg:#f2ede1;--ink:#17140f;--muted:#7a7263;--accent:#c2402a;--link:#2f6b4a;--card:#fbf8f0;--line:#d8d0bd}
+@media (prefers-color-scheme:dark){:root{--bg:#17140f;--ink:#f2ede1;--muted:#8a8271;--accent:#d96a52;--link:#6f9c82;--card:#211d15;--line:#3a3527}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:48px 20px 80px}
+header{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:32px}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.02em}
+h2{font-size:19px;margin:34px 0 10px;letter-spacing:-.01em}
+h3{font-size:16px;margin:22px 0 6px}
+.sub{color:var(--muted);font-size:14px;margin:0}
+a{color:var(--link)}
+ul{padding-left:20px}
+li{margin:6px 0}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:15px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:600}
+.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);padding:14px 16px;border-radius:0;margin:18px 0}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+code{background:var(--card);border:1px solid var(--line);padding:1px 5px;border-radius:0;font-size:14px}
+</style>
+</head><body><div class="wrap">
+<header>
+<h1>Blot — Privacy Policy</h1>
+<p class="sub">Last updated: 26 August 2026 · Applies to the Blot iOS app and the Blot backend service.</p>
+</header>
+
+<div class="note"><strong>The short version.</strong> Blot has no accounts. We never ask for your name, email or phone number — you are identified only by a random token created on your device. The screenshot you pick is sent to our server, scanned for sensitive text, covered, and sent back; we do not keep the image. We do keep a small record of each scan, and that record includes the exact strings the scanner matched. We use Google Analytics for Firebase to count how the app is used — screens opened, scans finished, purchases made — keyed to that same anonymous token and never to anything about the contents of your screenshot. We do not sell your data, we run no advertising SDKs, and we do not track you across other companies' apps.</div>
+
+<h2>1. Who we are</h2>
+<p>Blot is operated by StarNova ("we", "us"). Blot finds sensitive text in a screenshot — email addresses, API keys and tokens, credit card numbers, phone numbers and IP addresses — and covers it with a black bar, a blur, a pixel block or decoy text before you share the image. For any privacy question or request, contact us at <a href="mailto:vdnhan97@gmail.com">vdnhan97@gmail.com</a>.</p>
+
+<h2>2. No account, no sign-in</h2>
+<p>Blot has no user accounts and no sign-in. On first launch the app asks our server for an <strong>anonymous visitor token</strong> — a random string that is stored on your device in Capacitor Preferences (Keychain-backed storage on iOS) and sent with every request. Everything the service knows about you hangs off that token and nothing else. We never collect your name, email address, phone number, postal address, date of birth or contacts.</p>
+<p>The app also generates a <strong>per-install fingerprint</strong>: the literal string <code>blot-</code> followed by 32 random hexadecimal characters, produced on device by the system random number generator and stored alongside the token. It is not derived from your hardware, your browser or anything about you — it is simply a random label. The server uses it so that clearing the app's storage and registering again lands on the same identity and the same monthly scan allowance, rather than handing out a fresh free allowance every time.</p>
+
+<h2>3. What happens to the screenshot you pick</h2>
+<p>When you start a scan, the app reads the image you selected, downscales it on your device (longest edge 1600 pixels, re-encoded as JPEG) and sends it to the Blot backend over HTTPS. The backend forwards it to our screenshot engine, which runs <strong>Google Cloud Vision</strong> optical character recognition over the image to read the text in it, and then matches each recognised word against patterns for emails, API keys and tokens, credit card numbers, phone numbers and IP addresses. The result is a list of rectangles, each with the type of thing found. You review that list, choose a cover style, and the engine renders the cover onto the image and returns a PNG.</p>
+<p><strong>The image itself is not stored.</strong> It exists in server memory for the duration of the request and is discarded when the request ends. It is never written to a database, a disk or an object store, and it is never given a URL. What <em>is</em> kept is described below — read it carefully, because "we do not store the image" is not the same as "we keep nothing".</p>
+
+<div class="note"><strong>Please note.</strong> The record we keep of a scan includes the text that matched. If the scanner finds the API key <code>sk-live-…</code> in your screenshot, that string is stored in our database as part of the detection result, because it is what lets the "decoy text" cover produce a fake of the same shape and what lets a repeat scan of the same image be served without charging you again. Treat a screenshot you send to Blot as something you have shared with us.</div>
+
+<h2>4. What we collect and why</h2>
+<table>
+<tr><th>Data</th><th>Why</th><th>Kept</th></tr>
+<tr><td>Anonymous visitor token (random string)</td><td>Identifies your scan history, allowance and entitlement without an account</td><td>Until you ask us to delete it</td></tr>
+<tr><td>Per-install fingerprint (<code>blot-</code> + random hex)</td><td>Keeps one install on one monthly allowance so clearing storage does not mint a fresh one</td><td>Until you ask us to delete it</td></tr>
+<tr><td>The screenshot you pick</td><td>Scanned for sensitive text and rendered with covers</td><td>Not stored — held in memory for the request only</td></tr>
+<tr><td>SHA-256 hash of the uploaded image</td><td>Recognises the exact same image so re-scanning it is free and does not spend your allowance</td><td>Until you ask us to delete it</td></tr>
+<tr><td>Detection result for that hash: the rectangles found, the type of each (email, API key, card, phone, IP) <strong>and the text that matched</strong></td><td>Serves the repeat scan from cache and drives the cover rendering, including structure-preserving decoy text</td><td>Until you ask us to delete it</td></tr>
+<tr><td>Case record: case number, how many items were found, which types, and the timestamp</td><td>The Archive list in the app</td><td>Until you ask us to delete it. On Free only the last 7 days are shown to you</td></tr>
+<tr><td>Monthly scan counter</td><td>Enforces the plan's monthly scan allowance</td><td>One row per calendar month</td></tr>
+<tr><td>Hourly request counters</td><td>Abuse prevention (a ceiling on scans and renders per hour)</td><td>Old windows are deleted automatically</td></tr>
+<tr><td>IP address</td><td>Rate limiting and abuse prevention only — it caps how many brand-new identities one connection can create. The most recently seen address is stored on the visitor record.</td><td>Until you ask us to delete it; also present in short-lived server logs</td></tr>
+<tr><td>Time zone offset (minutes from UTC)</td><td>Decides when your billing month rolls over. Pinned the first time we see it so it cannot be rotated to farm a second allowance.</td><td>Until you ask us to delete it</td></tr>
+<tr><td>Analytics events and identifiers: the events listed in section 6, keyed to your visitor token, plus the Firebase app instance id and the vendor identifier (IDFV)</td><td>Tells us which screens are used, whether scans succeed and where people stop. Counts, type names and fixed labels only — never a screenshot, a matched string or any text you typed.</td><td>Google Analytics data retention (section 8)</td></tr>
+<tr><td>Subscription and credit status</td><td>Unlocks Plus or Pro and tops up scans. We receive the entitlement status, never your card details.</td><td>While the entitlement is active plus records required for accounting</td></tr>
+</table>
+<p>Blot does <strong>not</strong> collect your contacts, your location, health data, advertising identifiers (IDFA), browsing history or your photo library as a whole. We only ever receive the individual images you choose to scan.</p>
+
+<h2>5. Photos and camera permissions</h2>
+<p>Blot declares three permission strings in its iOS app:</p>
+<ul>
+<li><strong>Photo Library (read)</strong> — so you can pick the screenshot you want cleaned. iOS shows you the picker; only the image you tap is handed to the app.</li>
+<li><strong>Photo Library (add)</strong> — so the cleaned copy can be saved back to your photos when you choose to save it from the iOS share sheet. Blot can also save the cleaned PNG into Files → Blot instead.</li>
+<li><strong>Camera</strong> — <strong>Blot never opens the camera.</strong> The Capacitor photo picker we use checks all three usage descriptions before it will open at all and refuses the call if any one of them is missing, so the camera key has to be declared for "Choose from Photos" to work. The app only ever requests the Photos source; no code path in Blot takes a picture. We are telling you this plainly because a camera permission on a privacy tool deserves an explanation rather than silence.</li>
+</ul>
+
+<h2>6. Analytics and tracking</h2>
+<p>Blot uses <strong>Google Analytics for Firebase</strong> (the app side of Google Analytics 4) to understand how the app is used. On iOS the events go through the Firebase Analytics SDK; the SDK is built without advertising-identifier support, which is a deliberate choice and not a default. There is no third-party attribution SDK and no crash-reporting SDK in the app.</p>
+<p>The analytics user is your <strong>anonymous visitor token</strong> — the same random string described in section 2. It is pseudonymous: it is not your name, email, phone number or any identifier Google or anyone else can resolve to a person. Firebase additionally generates an app instance id and reads Apple's vendor identifier (IDFV), which is scoped to apps from us alone and resets when you delete the app.</p>
+<p>We send <strong>counts, type names and fixed labels, and nothing else</strong>. A scan event carries how many sensitive items were found, which categories they fell into (email, API key, card, phone, IP) and whether the result came from cache. It does <em>not</em> carry the screenshot, any thumbnail of it, any matched string, any file name or any text you typed. This is a rule in the code, not a promise about intent: the analytics module is documented as counts-and-enums-only precisely because a screenshot redaction tool leaking a matched string into an analytics parameter would defeat the entire product.</p>
+<p>The full list of what we send is: screens opened, a screenshot being picked and from where, a scan finishing (with the counts above) or failing (with a fixed reason code), a cover style being chosen, a cleaned copy being shared or saved, the scan allowance being reached, the paywall being shown and why, a purchase completing (tier and billing period, never a price or a card), a restore completing, and a setting being changed (which setting, and its new on/off or cover value).</p>
+<p>Blot does <strong>not</strong> use the advertising identifier (IDFA), does not show the App Tracking Transparency prompt, does not build advertising profiles, does not run remarketing or Google Signals, and does not track you across other companies' apps or websites. We do not use analytics data for advertising and we do not share it with advertising networks.</p>
+<p>Analytics is also <strong>build-gated</strong>: if the app is built without a Google Analytics measurement id configured, the analytics code never loads and nothing is sent at all.</p>
+<p>Separately from analytics, what the backend records is operational rather than behavioural: the counters and case records listed in section 4. Those never travel to Google Analytics.</p>
+
+<h2>7. Where your data goes</h2>
+<p>We share data only with the service providers needed to run the app:</p>
+<ul>
+<li><strong>Google Cloud Vision</strong> — receives the downscaled screenshot and returns the recognised text with pixel coordinates. This is what makes detection possible. Google processes the image as our service provider under the Google Cloud terms; the request carries no identity of yours, only the image.</li>
+<li><strong>Our screenshot engine</strong> — a service we operate that calls Vision, classifies the recognised words and renders the covers. It is passed an opaque per-visitor client id (your visitor record's internal id, prefixed <code>blot-</code>) so its caches and rate limits follow the right user.</li>
+<li><strong>Google Analytics for Firebase</strong> — receives the product events described in section 6, keyed to your anonymous visitor token, plus the app instance id and vendor identifier the SDK generates. It never receives your screenshot, any part of its contents, or any matched string. Google processes this as our service provider.</li>
+<li><strong>Apple</strong> — processes your purchase and reports the subscription status. Apple never gives us your payment details.</li>
+<li><strong>RevenueCat</strong> — manages subscription state and tells our server, by webhook, whether Plus or Pro is active for your anonymous visitor token, and when a credit pack has been bought. The identifier RevenueCat holds for you is that token.</li>
+</ul>
+<p>Data is processed on servers we operate and on the infrastructure of the providers above. We do not sell your data, we do not share it with data brokers, and we do not use it for advertising.</p>
+
+<h2>8. How long we keep things</h2>
+<ul>
+<li><strong>The screenshot:</strong> not retained. It lives in memory for the request.</li>
+<li><strong>Working caches in the engine:</strong> to avoid paying for the same OCR twice, the engine keeps the recognised text of a recently scanned image in memory, keyed by the image's content hash, for up to 30 minutes, and keeps the analysis result in a small in-memory cache that is bounded in size and cleared whenever the service restarts. These caches hold text and coordinates, never the image bytes, and never touch disk.</li>
+<li><strong>Detection results and case records in the Blot backend:</strong> kept against your visitor record until you ask us to delete them, or until we retire the record. The Free plan limits the history <em>shown</em> to you to the last 7 days; that is a display window, not a deletion schedule, which is why we say so here.</li>
+<li><strong>Counters:</strong> monthly scan counters are kept per month; hourly rate-limit windows are deleted once they have passed.</li>
+<li><strong>Analytics events:</strong> held by Google and deleted on the schedule set in our Google Analytics property's data retention setting, which is Google's own control rather than ours; aggregate reports outlive the individual events. Deleting the app and reinstalling mints a new visitor token, so past events are no longer connected to the new install.</li>
+<li><strong>Server logs:</strong> short-lived, and used for operating and securing the service.</li>
+</ul>
+
+<h2>9. Storage and security</h2>
+<p>All traffic between the app, our backend and our providers runs over HTTPS. The backend database is not publicly reachable and access is restricted to the systems and people needed to operate the service. Purchases never expose card details to us. No system is perfectly secure, and detection records contain sensitive strings by their nature, which is why we keep as little as the product allows and offer deletion on request.</p>
+
+<h2>10. Your choices and your rights</h2>
+<ul>
+<li><strong>Delete everything.</strong> Email <a href="mailto:vdnhan97@gmail.com">vdnhan97@gmail.com</a> and we will delete your visitor record and everything attached to it: the fingerprint, the stored IP, the detection results including any matched text, the case history and the counters. Because there is no account, please write from the device you use Blot on, or include enough detail — such as recent case numbers and roughly when you used the app — for us to find the record. Deleting the app from your phone also destroys the token, after which we can no longer connect the record to you but cannot identify it for deletion either, so ask first if you want it gone.</li>
+<li><strong>Access and portability.</strong> Ask us and we will tell you what is held against your visitor record and send it to you in a machine-readable form.</li>
+<li><strong>Correction and restriction.</strong> Ask us and we will correct inaccurate data or restrict processing where the law gives you that right.</li>
+<li><strong>GDPR (EEA and UK).</strong> If you are in the European Economic Area or the United Kingdom, our lawful bases are: performing the contract you enter into by using the app (scanning and covering the screenshot, providing your history and your plan), and our legitimate interests in keeping the service secure and available (rate limiting, abuse prevention, quota enforcement). You have the rights to access, rectification, erasure, restriction, portability and objection, and the right to complain to your local supervisory authority. Contact us at the address above to exercise any of them; we do not require you to create an account to do so.</li>
+<li><strong>CCPA/CPRA (California).</strong> We do not sell personal information and we do not share it for cross-context behavioural advertising, as those terms are defined by California law. We have not done so in the preceding twelve months, and we do not knowingly do so for anyone under 16. California residents may request to know, delete or correct the personal information we hold, and we will not discriminate against you for exercising those rights. The categories we collect are identifiers (the anonymous token, the random fingerprint, the IP address) and the internet activity and content records described in section 4.</li>
+<li><strong>Revoke Photos access.</strong> iOS Settings → Blot → Photos. Blot cannot pick an image without it.</li>
+<li><strong>Choose what is scanned for.</strong> The detection types Blot watches (emails, API keys, cards, phone numbers, IP addresses), your default cover style and Sentry Mode are stored only on your device; the backend never receives them. Changing one does send an analytics event naming the setting and its new value, as listed in section 6.</li>
+<li><strong>Opt out of analytics.</strong> Analytics is not required for the app to work. Email us at the address above and we will delete the events held against your visitor token; deleting and reinstalling the app also breaks the link, because a new install gets a new token.</li>
+</ul>
+
+<h2>11. Children</h2>
+<p>Blot is not directed at children under 13, and we do not knowingly collect data from them. If you believe a child has used the app and provided data, email us and we will delete it.</p>
+
+<h2>12. Changes</h2>
+<p>If this policy changes materially we will update this page and change the date at the top. Continuing to use Blot after a change means you accept the updated policy.</p>
+
+<h2>13. Contact</h2>
+<p><a href="mailto:vdnhan97@gmail.com">vdnhan97@gmail.com</a></p>
+
+<footer>Blot · <a href="./terms.html">Terms of Service</a> · Operated by StarNova</footer>
+</div></body></html>
