@@ -24,14 +24,15 @@ code{background:var(--card);border:1px solid var(--line);padding:1px 5px;border-
 </head><body><div class="wrap">
 <header>
 <h1>Blot — Terms of Service</h1>
-<p class="sub">Last updated: 26 August 2026 · Applies to the Blot iOS app and the Blot backend service.</p>
+<p class="sub">Last updated: 10 September 2026 · Applies to the Blot iOS app and the Blot backend service.</p>
 </header>
 
 <h2>1. The agreement</h2>
 <p>These terms are between you and StarNova ("we", "us"), the operator of Blot. By downloading or using Blot you accept them. If you do not accept them, do not use the app.</p>
 
 <h2>2. What Blot is</h2>
-<p>You pick a screenshot. Blot sends it to our service, which reads the text in the image with optical character recognition, matches what it reads against patterns for email addresses, API keys and tokens, credit card numbers, phone numbers and IP addresses, and shows you what it found. You choose which findings to cover and how — a black bar, a blur, a pixel block, or decoy text that replaces the real string with a fake of the same shape — and Blot returns a cleaned PNG you can share or save.</p>
+<p>You pick a screenshot. Blot reads the text in it with optical character recognition, matches what it reads against patterns for email addresses, API keys and tokens, credit card numbers, phone numbers and IP addresses, and shows you what it found. You choose which findings to cover and how — a black bar, a blur, a pixel block, or decoy text that replaces the real string with a fake of the same shape — and Blot gives you back a cleaned PNG you can share or save.</p>
+<p>On iPhone and iPad that sweep runs <strong>on your device</strong>, using the operating system’s own text recognition, and the covers are drawn on your device too: the screenshot itself does not leave your phone. Our server is still told that a scan happened — it owns your monthly allowance — but on this path it receives only how many items were found, what kinds they were, and a hash of the image so re-scanning the same screenshot is not charged twice. Where on-device recognition is unavailable — the web version, an older build, or a device whose text recognition fails — Blot falls back to scanning on our service, and the downscaled image is sent over HTTPS, held in memory for the request and discarded when it ends. Which path applies, and exactly what is kept in each case, is set out in the <a href="./privacy.html">Privacy Policy</a>.</p>
 <p>Blot is a convenience tool that helps you spot things you might otherwise miss. It is not a compliance product, a data-loss-prevention system, a certification, or an audit. Do not treat a screenshot that has been through Blot as certified safe, and do not use Blot as your only control where a leak would be serious — for production credentials, regulated personal data, legal disclosure or anything similar.</p>
 
 <h2>3. No guarantee of detection</h2>
@@ -71,8 +72,8 @@ code{background:var(--card);border:1px solid var(--line);padding:1px 5px;border-
 <h2>8. Acceptable use</h2>
 <p>Please do not:</p>
 <ul>
-<li>upload images containing other people's personal data, credentials or private communications without a lawful basis for doing so;</li>
-<li>upload content that is illegal, that you have no right to process, or that depicts the sexual exploitation of children;</li>
+<li>run Blot on images containing other people's personal data, credentials or private communications without a lawful basis for doing so;</li>
+<li>process content that is illegal, that you have no right to process, or that depicts the sexual exploitation of children;</li>
 <li>use Blot to identify, harvest or extract sensitive information for any purpose other than covering it in your own screenshot;</li>
 <li>attempt to bypass the monthly allowance, mint identities in bulk, reverse engineer the app, scrape the service, or drive it through automated clients;</li>
 <li>overload the service or use it in a way that disrupts it for others.</li>
